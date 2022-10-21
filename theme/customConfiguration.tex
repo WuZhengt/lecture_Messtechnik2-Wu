@@ -1,0 +1,197 @@
+% use bold font for  vectors and matrices 
+\DeclareRobustCommand*{\ora}{\overrightarrow}
+\NewCommandCopy{\vv}{\vec}
+\renewcommand{\vec}[1]{{\boldsymbol{#1}}}
+\newcommand{\mat}[1]{\boldsymbol{{#1}}}
+
+% Make Figurename: Fig.
+\addto\captionsenglish{\renewcommand{\figurename}{Fig.}}
+
+% change beamer templates for items
+\setbeamertemplate{items}[square]
+
+% change beamer template for toc
+\setbeamertemplate{sections/subsections in toc}[default]
+% activate numbering in TOC
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+% set TOC level for PDF bookmarks
+\hypersetup{bookmarksopen=true,bookmarksopenlevel=4}
+\setcounter{tocdepth}{4}
+
+% change beamer template for citations
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+% use part page at begin of new part
+\AtBeginPart{%
+
+\begin{frame}[plain]
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertpart\par%
+    % \usebeamerfont{title}\Roman{part}.~\insertpart\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+
+  %table of contents section?
+  % \begin{frame}[plain]
+  %   \vfill
+  %   \tableofcontents[hideallsubsections]
+  %   \vfill
+  % \end{frame}
+}
+
+% use section page at begin of new section
+% \AtBeginSection[]{
+%   \begin{frame}[plain]
+%   \vfill
+%   \centering
+%   \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+% 	\usebeamerfont{title}\Roman{part}.~\insertpart\par%
+%     \usebeamerfont{title}\thesection.~\insertsectionhead\par%
+%   \end{beamercolorbox}
+%   \vfill
+%   \end{frame}
+% }
+
+% \AtBeginSubsection[]{
+%   \begin{frame}[plain]
+%   \vfill
+%   \centering
+%   \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+%   {\small \insertpart~-~\insertsectionhead}\par%
+%   \vspace{1em}
+%   \usebeamerfont{title}{\Large \textbf{\insertsubsectionhead}}\par%
+%   \end{beamercolorbox}
+%   \vfill
+%   \end{frame}
+% }
+
+% equation numbering
+\numberwithin{equation}{section}
+
+% footnote without number
+\newcommand\blfootnote[1]{%
+\begingroup
+\renewcommand\thefootnote{}\footnote{#1}%
+\addtocounter{footnote}{-1}%
+\endgroup
+} 
+
+\renewcommand{\emph}[1]{\textcolor{MyBaseColor}{\textit{#1}}}
+
+%
+% Configuration of TIKZ
+%
+
+% advanced positioning of nodes
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+
+% tikzmark command: mark parts/symbols in equations for using as nodes in thikz pictures
+% arguments: #1 node name, #2 node text
+% -> has been replaced by tikzmakr library
+%\newcommand{\tikzmark}[1]{\tikz[baseline,remember picture] \coordinate (#1) {};}
+
+
+% change appearance of jmath
+\renewcommand{\jmath}{\ensuremath{j}}
+
+% change appearance of fourier transform symbol (dumbbell)
+\renewcommand{\fourier}{\laplace}
+
+% bold mathscr fonts
+\DeclareMathAlphabet{\mathscrbf}{OMS}{mdugm}{b}{n}
+
+% small-letter script font
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax} 
+
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} 
+
+% custom SI units
+\DeclareSIUnit{\belmilliwatt}{Bm}
+\DeclareSIUnit{\dBm}{\deci\belmilliwatt}
+\DeclareSIUnit{\sample}{Sa}
+
+
+\newcommand{\todo}[1]{\note[item]{\textcolor{red}{TODO: #1}}}
+
+% reference to enumerate items in text
+\newcommand\enumnum[1]{%
+  \tikzset{beameritem/.style={rectangle,inner sep=0,minimum size=1.75ex,text=enumerate item.bg,fill=enumerate item.fg,font=\scriptsize}}%
+  \tikz[baseline=(n.base)]\node(n)[beameritem]{#1};%
+}
+
+% boxes
+
+\newcommand\boxstandard[1]
+{
+  \begin{beamercolorbox}[colsep*=.75ex, vmode]{BoxGeneral}
+    #1
+  \end{beamercolorbox}
+}
+
+
+\newcommand\boxalert[1]
+{
+  \begin{beamercolorbox}[colsep*=.75ex, vmode]{BoxAlert}
+    #1
+  \end{beamercolorbox}
+}
+
+\newtcolorbox{mybox}[2][]{%
+  enhanced,
+  attach boxed title to top left={xshift=0.2mm, yshift=-2mm},%
+  boxed title style={size=small, arc=0mm, frame engine=empty, left=0mm, bottom=0mm, before upper=\strut},%
+  sharp corners=all,%
+  boxrule=0.3mm,%
+  colback=white,%
+  colframe=black,%
+  colbacktitle=white,%
+  coltitle=black,%
+  fonttitle=\bfseries,%
+  title=#2,%
+  #1}
+
+
+
+% remove "Definition" from theorems
+\makeatletter
+\setbeamertemplate{theorem begin}
+{%
+\setlength{\belowdisplayskip}{0pt}%
+\setlength{\belowdisplayshortskip}{0pt}%
+\setlength{\abovedisplayskip}{0em}%
+\setlength{\abovedisplayshortskip}{-1em}%
+\begin{\inserttheoremblockenv}%
+{%
+\inserttheoremheadfont
+%\inserttheoremname
+\inserttheoremaddition
+%\inserttheorempunctuation
+}%
+}
+\setbeamertemplate{theorem end}{\end{\inserttheoremblockenv}}
+\makeatother
+
+\theoremstyle{definition}
+\newtheorem{assignment}{Assignment}
+
+
+% cite link from bib
+\DeclareCiteCommand{\citelink}
+    {\boolfalse{citetracker}%
+        \boolfalse{pagetracker}%
+        \usebibmacro{prenote}}
+    {\iffieldundef{postnote}
+        {\href{\thefield{url}}{\texttt{\thefield{url}}}}
+        {\href{\thefield{url}}{\thefield{postnote}}}}
+    {\multicitedelim}
+    {}

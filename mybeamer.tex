@@ -1,0 +1,53 @@
+% run this file to create the presentation format
+%
+% pdftex -ini -jobname="mybeamer" "&pdflatex" mylatexformat.ltx mybeamer.tex
+
+%
+% Selection of the documentclass
+%
+
+% use this to create 4:3 slides
+\documentclass[aspectratio=1610, hyperref={pdfpagelabels=false}, xcolor={svgnames}, t, onlytextwidth]{beamer}
+% Options
+% t: top align of columns per default
+% onlytextwidth: columns only use textwdith
+
+
+%
+% Load dependencies
+%
+
+%file containing all included packages
+\input{theme/use}
+% file containing the custom configuration, i.e. commands, etc.
+\input{theme/customConfiguration}
+
+% use this fo 16:9 slides
+%\documentclass[aspectratio=169]{beamer}
+
+% use this to create slide handouts
+% \documentclass[handout]{beamer}
+
+% activate both below commands for handout in article mode
+%\documentclass{article}
+%\usepackage{beamerarticle}
+
+
+% set template for notes
+%\setbeamertemplate{note page}[plain]
+
+% set templates for headline and footline
+% it is important to do this once before \begin{document}, since the heights of headline and footline are only calculated once
+\setbeamertemplate{headline}[normal]
+
+\setbeamertemplate{part page}[normal]
+
+\mode<beamer>{
+    \setbeamertemplate{footline}[normal]
+}
+\mode<handout>{
+    \setbeamertemplate{footline}[handout]
+}
+
+\endofdump
+

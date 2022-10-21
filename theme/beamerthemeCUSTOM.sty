@@ -1,0 +1,105 @@
+
+% define left and right margins of slide
+\setbeamersize{text margin left=7mm,text margin right=7mm}
+
+
+%\setlength{\leftmargini}{10pt}
+
+
+%include the specific themes for color, font and outer
+\usepackage{./theme/beamerfontthemeCUSTOM}
+\usepackage{./theme/beamercolorthemeCUSTOM}
+\usepackage{./theme/beamerouterthemeCUSTOM}
+\usepackage{./theme/beamerinnerthemeCUSTOM}
+%\useinnertheme[shadow]{rounded}
+
+
+% unknown option
+%\beamertemplatetransparentcovereddynamic
+
+% no navigation symbols
+\mode<presentation>{\beamertemplatenavigationsymbolsempty}
+
+
+% define title page
+\defbeamertemplate*{title page}{normal}{%
+	\begin{tikzpicture}
+
+		\useasboundingbox (0,0) rectangle (\textwidth, \paperheight);
+		% draw rectangle same size as bounding box
+		%\draw (0mm,0) rectangle (\textwidth, \paperheight);
+		
+		%\node[anchor=south] at (0.5\textwidth,8cm) {\includegraphics[width=\paperwidth]{theme/graphics/banner.png}};
+		\node[anchor=east] at (2mm + \textwidth - 2cm,8.75cm) {\includegraphics[height=0.7cm]{theme/graphics/logo_btu}};
+		\node[anchor=east] at (2mm + \textwidth,8.6cm) {\includegraphics[height=1cm]{theme/graphics/logo_ess}};
+
+
+		\draw  (0.5\textwidth,0.5\paperheight)
+			node[anchor=center] (titlebox){
+				\begin{beamercolorbox}[dp=0.5ex,wd=0.92\textwidth, center]{title}
+					\usebeamerfont*{title}
+					\usebeamercolor[fg]{title}
+					\inserttitle
+				\end{beamercolorbox}
+			};
+
+		\draw (titlebox.south) ++ (0,-2mm)
+			node[anchor=north] (subtitlebox){
+				\begin{beamercolorbox}[dp=0.5ex,wd=0.92\textwidth, center]{title}
+					\usebeamerfont*{subtitle}
+					\usebeamercolor[fg]{subtitle}
+					\insertsubtitle
+				\end{beamercolorbox}
+			};
+
+		\draw (subtitlebox.south) ++ (0,-2mm)
+			node[anchor=north] (authorbox){
+				\begin{beamercolorbox}[dp=0.5ex,wd=0.92\textwidth, center]{author}% 
+					\usebeamerfont*{author}
+					\usebeamercolor[fg]{author}
+					\insertauthor
+				\end{beamercolorbox}
+			};
+
+		\draw (authorbox.south) ++ (0,-2mm)
+		node[anchor=north] (institutebox){
+			\begin{beamercolorbox}[dp=0.5ex,wd=0.92\textwidth, center]{author}% 
+				\usebeamerfont*{institute}
+				\usebeamercolor[fg]{institute}
+				\insertinstitute
+			\end{beamercolorbox}
+		};
+	
+		\node[anchor=west] at (-0.7cm, 0.35cm) {\usebeamerfont{footline}{Revision \today}};
+	\end{tikzpicture}
+	\addtocounter{framenumber}{-1}
+}
+
+% define section page
+\defbeamertemplate*{section page}{normal}{%
+	\setbeamertemplate{headline}[empty]
+	\begin{frame}
+	\vfill
+	\centering
+	\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+		\usebeamerfont{title}\insertromanpartnumber.~\insertpart\par%
+		\usebeamerfont{title}\insertsectionnumber.~\insertsection\par%
+	\end{beamercolorbox}
+	\vfill
+	\end{frame}
+	\setbeamertemplate{headline}[normal]
+}
+
+% define part page
+\defbeamertemplate{part page}{normal}{%
+	\setbeamertemplate{headline}[empty]
+	\begin{frame}
+	\vfill
+	\centering
+	\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+		\usebeamerfont{title}\insertromanpartnumber.~\insertpart\par%
+	\end{beamercolorbox}
+	\vfill
+	\end{frame}
+	\setbeamertemplate{headline}[normal]
+}

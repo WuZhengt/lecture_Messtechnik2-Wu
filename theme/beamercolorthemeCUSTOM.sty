@@ -1,0 +1,100 @@
+
+
+
+
+% define some colors
+
+% MY colors
+\definecolor{MyBaseColor}{HTML}{5B9BD5}
+
+% some color schemes, e.g. derived from adobe kuler
+\definecolor{MyColor1}{HTML}{ED7D31}
+\definecolor{MyColor2}{HTML}{A5A5A5}
+\definecolor{MyColor3}{HTML}{FFC000}
+\definecolor{MyColor4}{HTML}{70AD47}
+
+\setbeamercolor{BoxGeneral}{fg=black,bg=MyColor1!20}
+
+% \colorlet{shading main}{green!30!blue!70!white}
+% \colorlet{circle 1}{black!40!white}
+% \colorlet{circle 2}{black!60!white}
+% \colorlet{circle 3}{black}
+% \colorlet{gray}{black!30}
+
+% \setbeamercolor{palette primary}{fg=black!70!white}
+% \setbeamercolor*{text shadow}{fg=black!30}
+
+% \setbeamercolor{palette secondary}{fg=mediumblue}
+% \setbeamercolor{palette tertiary}{fg=lightblue}
+% \setbeamercolor{palette quaternary}{fg=lmkblue}
+
+% \setbeamercolor{author}{parent=palette primary}
+% \setbeamercolor{institute}{parent=palette primary}
+% \setbeamercolor{date}{parent=palette primary}
+
+% \setbeamercolor{structure}{fg=green!50!black}
+
+\setbeamercolor{section in toc}{fg=MyBaseColor}
+\setbeamercolor{subsection in toc}{fg=MyColor2}
+
+% bullets, enumerations, etc ...
+% \setbeamercolor{local structure}{fg=IEEEblue}
+% \setbeamercolor{alerted text}{fg=IEEEblue}
+%\setbeamercolor{titlelike}{fg=MyBaseColor}
+
+\setbeamercolor{title}{fg=MyBaseColor}
+\setbeamercolor{subtitle}{fg=black}
+
+% \setbeamercolor{headline}{fg=IEEEblue}
+\setbeamercolor{frametitle}{fg=MyBaseColor}
+\setbeamercolor{framesubtitle}{fg=black}
+% \setbeamercolor{footline}{fg=black}
+% \setbeamercolor{author in head/foot}{fg=IEEEblue}
+% \setbeamercolor{title in head/foot}{fg=IEEEblue}
+% \setbeamercolor{date in head/foot}{fg=IEEEblue}
+% \setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in head/foot}{fg=white}
+
+\setbeamercolor{block title}{parent=normal text,bg=MyColor2!50}
+\setbeamercolor{block body}{parent=normal text,bg=MyColor2!20}
+
+\setbeamercolor{block title alerted}{parent=normal text,bg=MyColor2!50}
+\setbeamercolor{block body alerted}{parent=normal text,bg=MyColor2!20}
+
+\setbeamercolor{block title example}{parent=normal text,bg=MyColor2!50}
+\setbeamercolor{block body example}{parent=normal text,bg=MyColor2!20}
+
+
+\BeforeBeginEnvironment{definition}{%
+    \setbeamercolor{block title}{fg=black,bg=MyBaseColor!50}
+    \setbeamercolor{block body}{fg=black, bg=MyBaseColor!20}
+}
+
+\AfterEndEnvironment{definition}{
+ \setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+ \setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg, fg=black}
+}
+
+\BeforeBeginEnvironment{fact}{%
+    \setbeamercolor{block title}{fg=black,bg=MyColor3!50}
+    \setbeamercolor{block body}{fg=black, bg=MyColor3!20}
+}
+
+\AfterEndEnvironment{fact}{
+ \setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+ \setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg, fg=black}
+}
+
+\BeforeBeginEnvironment{assignment}{%
+    \setbeamercolor{block title}{fg=black,bg=MyColor1!50}
+    \setbeamercolor{block body}{fg=black, bg=MyColor1!20}
+}
+
+\AfterEndEnvironment{assignment}{
+ \setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+ \setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg, fg=black}
+}
+
+\setbeamercolor{item}{fg=MyBaseColor}
+
+

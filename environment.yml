@@ -1,0 +1,16 @@
+name: lecture_remote_sensing
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8.6
+  - jupyterlab=3.0.11
+  - numpy=1.19.5
+  - matplotlib=3.3.4
+  - ipympl=0.7.0
+  - nodejs=14.8.0
+  - scipy=1.6.2
+  - sympy=1.7.1
+  - pandas=1.2.3
+  - ipywidgets=7.6.3
+  - ffmpeg=4.2.2

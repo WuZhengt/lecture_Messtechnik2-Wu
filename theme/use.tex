@@ -1,0 +1,118 @@
+% classical setup
+%\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage[english]{babel}
+\usepackage[german]{babel}
+
+% advanced facilities for inline and display quotations
+\usepackage{csquotes}
+
+% extensive fonts, xelatex rewuired
+%\usepackage{fontspec}
+
+% smothing the font
+\usepackage{lmodern}
+
+% glossaries, acronyms
+% section=subsection "hides" printglossary in subsection
+%\usepackage[acronyms, nonumberlist, section=subsection]{glossaries}
+
+% fancy boxes around text
+% add theorem option for boxing equations
+\usepackage[theorems]{tcolorbox}
+\tcbuselibrary{most}
+\tcbuselibrary{skins}
+
+% its tikz --> must be called before inclusion of theme for correct operation in article mode
+\usepackage{tikz}
+\usepackage[nooldvoltagedirection, european]{circuitikz}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{calc}
+
+% open the Beamer Theme
+\mode<presentation>{\usepackage{./theme/beamerthemeCUSTOM}}
+
+% more text symbols
+%\usepackage{textcomp}
+
+% more colors
+%\usepackage{xcolor}
+
+% allows for strike out in equations
+%\usepackage{cancel}
+
+% dummy text
+%\usepackage{lipsum}
+
+% for videos
+%\usepackage{media9}
+
+% for math
+\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{dsfont}
+\usepackage{esint}
+
+% custom delimiters, e.g. norm
+\usepackage{mathtools}
+
+% more math symbols (\mathscr)
+\usepackage{mathrsfs}
+
+% fourier/laplace transform symbols
+\usepackage{trfsigns}
+
+% fancy verbatim code
+%\usepackage{minted}
+
+% fractions in the form n/d
+%\usepackage{xfrac}
+
+% for tikz
+%\usepackage{pgffor}
+
+% convert eps to pdf
+%\usepackage{epstopdf}
+
+% text wrapped around figure or tabel
+%\usepackage{wrapfig}
+
+% font is times
+%\usepackage{times}
+
+% show layout of slides
+%\usepackage{layout}
+
+% replacement of labels in eps figures
+%\usepackage{pstool}
+
+% improved tables
+\usepackage{tabularx}
+\usepackage{array}
+
+% advanced inclusion of sub-files
+\usepackage{import}
+
+% easy handling of SI units
+\usepackage[binary-units, exponent-product = \cdot]{siunitx}
+
+% inclusion of multi-media files
+%\usepackage{media9}
+
+% customize appendices
+%\usepackage{apptools}
+
+% necessary for nice references
+\usepackage[backend=biber, style=ieee, doi=false, isbn=false, url=false, eprint=false]{biblatex}
+
+%necessary for notes on second screen
+\usepackage{pgfpages}
+
+%box clipping contents
+\usepackage{trimclip}
+
+%captions outside floats
+\usepackage{capt-of}
+
+%current date and time in various formats
+\usepackage[showzone=False]{datetime2}

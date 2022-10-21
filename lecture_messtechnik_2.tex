@@ -1,0 +1,208 @@
+%&mybeamer
+\endofdump
+
+%
+% TITLE, AUTHOR, ETC.
+%
+
+\title{Messung nichtelektrischer Größen und Sensorik}
+%\subtitle{}
+\author{Prof. Dr. Markus Gardill}
+\institute{
+Brandenburgische Technische Universität Cottbus – Senftenberg\\
+Fachgebiet Elektronische Systeme und Sensorik\\
+Siemens-Halske-Ring 14, D-03046 Cottbus, Germany\\
+www.b-tu.de/fg-ess/
+}
+\date{\DTMnow}
+
+\addbibresource{./content/references.bib}
+
+%
+% This file uses a predefined format for speedup!
+%
+% see mybeamer.tex for creation of the format file
+%
+
+%
+% Change settings depending on the provided jobame
+% --> can be used for deploy
+%
+\def\testa{lecture_messtechnik_2_deploy}
+\edef\testa{\meaning\testa}
+\edef\testb{\jobname}
+\edef\testb{\meaning\testb}
+
+\message{********************}
+\message{\testa}
+\message{\testb}
+
+
+\newif\ifdeploy
+
+\ifx\testa\testb
+  %
+  % Options for Deploy Build
+  %
+  \message{********************}
+  \message{Using deploy configuration}
+  % settings for deploy configuration
+  \deploytrue
+  \setbeameroption{hide notes}
+\else
+  %
+  % Options for Development Build
+  %
+  \deployfalse
+  \mode<presentation>{%
+  % create a superwide version for nodes?
+  \setbeameroption{hide notes}
+  %\setbeameroption{show notes}
+  %\setbeameroption{show notes on second screen}
+  %\setbeameroption{show only notes}
+}
+\fi
+
+% glossaries, acronyms
+% section=subsection "hides" printglossary in subsection
+\usepackage[acronyms, nonumberlist, section=subsection]{glossaries}
+\usepackage{glossary-longragged}
+
+%
+% Files defining glossaries
+%
+\newcommand{\s}[1]{\gls{s:#1}}
+\newglossary[syg]{symbol}{syr}{syn}{Symbols}
+
+% options 1 or 2 of glossaries; 2 requires perl
+%\makenoidxglossaries
+\makeglossaries 
+
+\input{content/acronyms.tex}
+\input{latex_symbol_libraries/symbols_german_albach.tex}
+
+\begin{document}
+
+%\setbeamertemplate{blocks}[rounded][shadow=true]
+
+%
+% DEBUG SLIDES
+%
+%\begin{frame}
+%\layout
+%\end{frame}
+
+
+%
+% Main Content Section
+%
+
+
+% Create the title slide
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth, height=\paperheight]{./theme/graphics/IEEE_Background}}
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+%\addtocounter{page}{-1}
+
+% include the contents
+\usebackgroundtemplate{}
+
+% when true, the automatic deploy/development mechanism is used
+% when false, all sections are build
+\iftrue
+%\iffalse
+  \ifdeploy
+  %
+  % The current Deploy version
+  %
+  \subimport{content/}{structure_deploy.tex}
+  \else
+  %
+  % The current Work-In-Progress version
+  %
+  \subimport{content/}{structure_wip.tex}
+  \fi
+\else
+  %
+  % The complete set of slides
+  %
+  \subimport{content/}{structure_complete.tex}
+\fi
+
+
+%
+% Appendix, using some manual tweaks ...
+%
+
+% restric toc to section depth, we are hiding the glossaries entries in subsection
+\setcounter{tocdepth}{2}
+
+% % redefine the part and section pages
+% \AtBeginPart{%
+% \begin{frame}[plain]
+%   \vfill
+%   \centering
+%   \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+% 	\usebeamerfont{title}\Roman{part}.~\insertpart\par%
+%   \end{beamercolorbox}
+%   \vfill
+%   \end{frame}
+% }
+
+% use section page at begin of new section
+\AtBeginSection[]{
+  \begin{frame}[plain]
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+	\usebeamerfont{title}\insertpart\par%
+    \usebeamerfont{title}\Alph{section}.~\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+% no page between subsection
+\AtBeginSubsection[]{}
+
+% reset the section counter
+\setcounter{section}{0}
+
+\part{Anhang}
+\label{part:appendix}
+
+\setbeamertemplate{footline}[appendix]
+
+\section{Symbole}
+\begin{frame}[allowframebreaks]{\insertsection}
+    \glstocfalse
+    % activate to print all glossary entries
+    %\glsaddallunused
+    %\setacronymstyle{altlongragged4col}
+    % options 1 or 2 of glossaries; 2 requires perl
+    %\printnoidxglossary[type=symbol]
+    \printglossary[type=symbol,nogroupskip, style=altlongragged4col]
+\end{frame}
+
+\section{Abkürzungsverzeichnis}
+\begin{frame}[allowframebreaks]{\insertsection}
+    \glstocfalse
+    \setacronymstyle{long-short}
+    % options 1 or 2 of glossaries; 2 requires perl
+    %\printnoidxglossary[type=acronym]
+    \printglossary[type=acronym]
+\end{frame}
+
+
+
+\section{Quellen}
+% activate to print all references 
+%\nocite{*}
+\begin{frame}[allowframebreaks]{\insertsection}
+\def\newblock{}
+\printbibliography[heading=none]
+\end{frame}
+
+\end{document}

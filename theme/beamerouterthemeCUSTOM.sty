@@ -1,0 +1,115 @@
+% define both commands without makro expansion, since otherwise it
+% leads to an error
+\def\insertframetitle{}
+\def\insertframesubtitle{}
+%
+% global lengths
+%
+
+\defbeamertemplate{headline}{empty}{%
+}
+
+
+% conditional command to insert section title only if a section was defined
+\newcommand\condsecthead{
+	\ifnum \number\numexpr\thesection>0
+    |~\insertsectionhead~
+	% |~\thesection.\thesubsection~\insertsubsectionhead~
+	\fi
+}
+
+% conditional command to insert subsection title only if a subsection was defined
+\newcommand\condsubsecthead{
+	\ifnum \number\numexpr\thesubsection>0
+    |~\insertsubsectionhead~
+	% |~\thesection.\thesubsection~\insertsubsectionhead~
+	\fi
+}
+
+\defbeamertemplate{headline}{normal}{%
+    % include section/subsection number and title in headline 
+    %\begin{beamercolorbox}[ht=0.35cm]{framesubtitle}
+    %    \usebeamerfont{framesubtitle}
+    %    %\thesection.\thesubsection~\insertsubsectionhead~\insertframesubtitle
+    %    % use conditional subsection title
+    %    \strut\thesection~\insertsectionhead\condsubsecthead~\insertframesubtitle\strut
+    %\end{beamercolorbox}
+    \begin{tikzpicture}
+        \useasboundingbox (0,0) rectangle (\textwidth, 1.2cm);
+        % draw rectangle same size as bounding box
+        %\draw (0mm,0) rectangle (\textwidth, 1.2cm);
+        % title
+        \node[anchor=west] at (1cm, 0.6cm) {
+            \begin{beamercolorbox}[ht=0.85cm, sep=1mm]{frametitle}
+                \usebeamerfont{frametitle}\strut\insertframetitle\strut
+            \end{beamercolorbox}
+            };
+        % vertical line
+        \draw[color=MyBaseColor, line width= 0.3mm] (0.7,0.2) -- (0.7,1.0cm);
+    \end{tikzpicture}
+    %\hspace{13mm}
+    %{\usebeamercolor{frametitle}\color{fg}\vrule height 1cm width 0.1mm}
+    %\begin{beamercolorbox}[ht=0.85cm, sep=1mm]{frametitle}
+     %   \usebeamerfont{frametitle}
+        % use regular/manual frame title
+      %  \strut\insertframetitle\strut
+        % use conditional subsection title
+        %\strut\condsubsecthead~\insertframetitle\strut
+    %\end{beamercolorbox}
+    %\vspace{-1mm}
+    %{\usebeamercolor{frametitle}\color{fg}\hrule height 0.25mm width 0.95\textwidth}
+    %\begin{beamercolorbox}[ht=0.55cm, sep=1mm]{framesubtitle}
+    %    \usebeamerfont{framesubtitle}
+    %    \strut\insertframesubtitle\strut
+    %\end{beamercolorbox}
+}
+
+\defbeamertemplate{footline}{normal}{%
+    \begin{tikzpicture}
+        \useasboundingbox (0,0) rectangle (\textwidth, 0.3cm);
+        % draw rectangle same size as bounding box
+        %\draw (0mm,0) rectangle (\textwidth, 0.3cm);
+        % draw diagonal line across bounding box
+        %\draw (current bounding box.south west) -- (current bounding box.north east);
+        
+        % gray box in lower right corner, extend over slide borders 
+        %\fill [fill=gray](\beamer@footline@width, \beamer@footline@height) rectangle ($(current bounding box.north east)+(0:5mm)$);
+        
+        % the footline graphics; by using handout:0 the will not be shown in the handout
+        %\node[anchor=south west] at (-0.075cm,-0.075cm) {\includegraphics[height=0.75cm]{./theme/graphics/logo_jmu.png}};
+        %\node[anchor=east] (A) at (\textwidth, 0.375cm) {\includegraphics[height=0.5cm]{theme/graphics/logo_computer_science_vii.png}};
+
+        % section and subsection
+        \node[anchor=west] at (0, 0.15cm) {\usebeamercolor[MyColor2]{}\insertpart\condsecthead\condsubsecthead};
+
+        % the slide number; two versions with different positions
+        \node [anchor=east] at (\textwidth -0.1cm, 0.15cm) {\strut\insertpagenumber\strut};
+    \end{tikzpicture}
+}
+
+\defbeamertemplate{footline}{appendix}{%  
+    \begin{tikzpicture}   
+        \useasboundingbox (0,0) rectangle (\textwidth, 0.3cm);
+        % section and subsection
+        \node[anchor=west] at (0, 0.15cm) {\usebeamercolor[MyColor2]{}\insertpart\condsecthead\condsubsecthead};
+
+        % the slide number; two versions with different positions
+        \node [anchor=east] at (\textwidth -0.1cm, 0.15cm) {\strut\insertpagenumber\strut};
+    \end{tikzpicture}
+}
+
+\defbeamertemplate{footline}{handout}{%  
+    \begin{tikzpicture}   
+        \useasboundingbox (0,0) rectangle (\textwidth, 0.3cm);
+        % section and subsection
+        \node[anchor=west] at (0, 0.15cm) {\strut\thesection~\insertsectionhead\condsubsecthead\strut};
+
+        % the slide number; two versions with different positions
+        \node [anchor=east] at (\textwidth -0.1cm, 0.15cm) {\strut\insertpagenumber\strut};
+    \end{tikzpicture}
+}
+
+\defbeamertemplate*{frametitle}{normal}{%
+    % empty frametitle, since frametitle is included in headline
+    \vspace{-3mm}
+}
